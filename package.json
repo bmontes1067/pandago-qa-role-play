@@ -1,0 +1,21 @@
+{
+  "name": "pandago-qa-role-play",
+  "version": "1.0.0",
+  "description": "repo for PandaGo QA role play",
+  "scripts": {
+    "postinstall": "cd app && npm install",
+    "start": "cd app && npm start",
+    "cypress:open": "cypress open"
+  },
+  "author": "Belen Montes <bmontes1067@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bmontes1067/padago-qa-role-play.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "cypress": "^11.2.0",
+    "cypress-cucumber-preprocessor": "^4.3.1"
+  }
+}
