@@ -1,7 +1,14 @@
 /// <reference types="cypress" />
 
 //TODO: Use Gherkin
-//TODO: Use POM
+
+import { LoginPage } from "../page-objects/login-page";
+const loginPage = new LoginPage()
+const email = "bmontes1067@gmail.com"
+const notExistingEmail = "test@gmail.com"
+const badFormedEmail = "bmontes1067@gmail"
+const password = "Aa123456"
+const incorrectPassword = "Aa12345"
 
 beforeEach(() => {
     cy
@@ -10,20 +17,14 @@ beforeEach(() => {
 
 
 it('test login', ()=>{
-    cy.intercept({
-        method: 'POST',
-        url:'/login'
-    }).as("login")
 
-    cy.intercept({
-        method:'GET',
-        url: '/api/users'
-    }).as('users')
+    loginPage.interceptLoginRequest()
+    loginPage.interceptUsersRequest()
 
-    cy.get('[data-cy="login-menu"]').click()
-    cy.get('[data-cy="login-email"]').type("bmontes1067@gmail.com")
-    cy.get('[data-cy="login-password"]').type("Aa123456")
-    cy.get('[data-cy="login"]').click()
+    loginPage.clickLogInMenuButton()
+    loginPage.sendTextEmailInput(email)
+    loginPage.sendTextPasswordInput(password)
+    loginPage.clickLogInButton()
 
     cy
         .wait("@login")
@@ -31,29 +32,26 @@ it('test login', ()=>{
 
             expect(login.response.statusCode).to.eq(200)
             expect(login.response.body.accessToken).not.to.be.null
-            expect(login.request.body.email).to.eq("bmontes1067@gmail.com")
-            expect(login.request.body.password).to.eq("Aa123456")
+            expect(login.request.body.email).to.eq(email)
+            expect(login.request.body.password).to.eq(password)
         })
 
     cy
         .wait("@users")
         .then((users)=>{
             expect(users.response.statusCode).to.eq(200)
-            expect(users.response.body.user.email).to.eq("bmontes1067@gmail.com")
+            expect(users.response.body.user.email).to.eq(email)
             expect(users.response.body.user.password).not.to.be.null
             expect(users.response.body.user.id).to.eq(1)
         })
 })
 it("failing password", ()=>{
-    cy.intercept({
-        method: 'POST',
-        url:'/login'
-    }).as("login")
+    loginPage.interceptLoginRequest()
 
-    cy.get('[data-cy="login-menu"]').click()
-    cy.get('[data-cy="login-email"]').type("bmontes1067@gmail.com")
-    cy.get('[data-cy="login-password"]').type("Aa12345")
-    cy.get('[data-cy="login"]').click()
+    loginPage.clickLogInMenuButton()
+    loginPage.sendTextEmailInput(email)
+    loginPage.sendTextPasswordInput(incorrectPassword)
+    loginPage.clickLogInButton()
 
     cy
         .wait("@login")
@@ -64,15 +62,12 @@ it("failing password", ()=>{
 
 })
 it("failing email", ()=>{
-    cy.intercept({
-        method: 'POST',
-        url:'/login'
-    }).as("login")
+    loginPage.interceptLoginRequest()
 
-    cy.get('[data-cy="login-menu"]').click()
-    cy.get('[data-cy="login-email"]').type("test@gmail.com")
-    cy.get('[data-cy="login-password"]').type("Aa123456")
-    cy.get('[data-cy="login"]').click()
+    loginPage.clickLogInMenuButton()
+    loginPage.sendTextEmailInput(notExistingEmail)
+    loginPage.sendTextPasswordInput(password)
+    loginPage.clickLogInButton()
 
     cy
         .wait("@login")
@@ -84,15 +79,12 @@ it("failing email", ()=>{
 })
 
 it("incorrect email format", ()=>{
-    cy.intercept({
-        method: 'POST',
-        url:'/login'
-    }).as("login")
+    loginPage.interceptLoginRequest()
 
-    cy.get('[data-cy="login-menu"]').click()
-    cy.get('[data-cy="login-email"]').type("test@gmail")
-    cy.get('[data-cy="login-password"]').type("Aa123456")
-    cy.get('[data-cy="login"]').click()
+    loginPage.clickLogInMenuButton()
+    loginPage.sendTextEmailInput(badFormedEmail)
+    loginPage.sendTextPasswordInput(password)
+    loginPage.clickLogInButton()
 
     cy
         .wait("@login")
