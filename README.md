@@ -137,12 +137,32 @@ After that, Automation and development phases start.
 -   Once the development has ended, the automation test will be working (Passing Scenario)
 -   At that point, QA will determine if it is necessary to refactor de test previously created.
 
-![BDD](/resources/BDDWorkflow.png)
+![BDDWorkflow](/resources/BDDWorkflow.png)
 
-Trello app --> https://github.com/filiphric/cypress-tau-course
-cucumber para cypress --> npm install --save-dev cypress-cucumber-preprocessor
-install trello app --> npm install --> package.json --> "postinstall": "cd app && npm install"
-launch trello app --> npm start --> package.json --> "start": "cd app && npm start"
-launch cypress --> npx cypress open
-sonarqube --> sonar-scanner.bat -D"sonar.projectKey=pandago" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=0244e3b029bac787d27ed195a8aa112a7c26a709"
-n
+## Code coverage
+
+We have several options available to check the quality of our code and the coverage we have.
+
+We can use the code coverage provided by Cypress https://docs.cypress.io/guides/tooling/code-coverage.
+It seems an attractive option. However, I have not been able to investigate it.
+
+Because of this, I have opted for Sonarqube and Sonarcloud.
+
+At first, I used SonarQube. I created a Docker container using the SonarQube image. It allowed me to have SonarQube accessible on localhost (I specified it on port 9000) and run the sonar-scanner from the terminal with this command:
+
+    sonar-scanner.bat -D "sonar.projectKey=pandago" -D "sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=0244e3b029bac787d27ed195a8aa112a7c26a709"
+
+The SonarQube configuration file I have kept here [sonar-project_old.properties](sonar-project_local.properties)
+and here you can see a screenshot of the result of the project execution.
+
+![BDDWorkflow](/resources/sonarqube/sonarqube-overall-code.png)
+
+I decided to implement GitHub actions for code analysis in the project. I realized that the integration was with SonarCloud, so I cruised configure it, creating a token for SonarCloud, a new sonar-project.properties file, and a build.yml file where I specify that SonarCloud will launch every time there is a merge to the Main branch.
+
+### Is SonarQube or SonarCloud better?
+
+The reality is that both are valid and different, so the choice will depend more on the ecosystem we are setting up.
+
+In a Cloud environment, SonarCloud, hosted in SonarSource in AWS, is the best option. In addition, it has fast integration with GitHub.com, GitLab.com, Bitbucket.org, and Azure DevOps. 
+
+If, on the other hand, our ecosystem is based on our servers or a self-managed cloud environment such as GCP (Google Cloud Platform), it will be better to opt for SonarQube. Like SonarCloud, it has integrations with GitHub, GitLab, Bitbucket, and Azure DevOps.
