@@ -94,3 +94,18 @@ it("incorrect email format", ()=>{
         })
 
 })
+
+it("empty email & password", ()=>{
+    loginPage.interceptLoginRequest()
+
+    loginPage.clickLogInMenuButton()
+    loginPage.clickLogInButton()
+
+    cy
+        .wait("@login")
+        .then((login)=>{
+            expect(login.response.statusCode).to.eq(400)
+            expect(login.response.body).to.eq("Email and password are required")
+        })
+
+})

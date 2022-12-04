@@ -61,6 +61,83 @@ Considering this information, and taking into account the needs of the technical
 - Easier way to handle with requests.
 - Be a friendlier option for the Frontend team. As the tests are coded in JS, it gives the Frontend team the freedom to continue creating the tests they consider necessary, avoiding a possible bottleneck in the QA team.
 
+## Test cases
+
+The test cases created can be found here: [Test Cases](/resources/testcases.pdf)
+
+For this role play, I have chosen the first of the proposed scenarios:
+-   A login scenario.
+    -  Email and password inputs
+    - Remember me checkbox
+    - Validation errors before submitting the form
+    - Validation error if login information is wrong
+
+I used the Qase tool for writing the test cases.
+- It is a free test management tool (up to 3 users).
+- It allows the creation of suites.
+- I can indicate the layer on which the test cases are executed.
+- It allows me to mark if the test case is automated.
+- If you have Jira, it lets you create a bug associated with the test case if you set it as failed.
+- And above all, it allows you to write the test cases using Gherkin and gives way to work with BDD.
+
+
+
+### What is BDD?
+
+BDD is an agile working methodology. We can consider it as an extension of TDD.
+
+This methodology seeks to use a natural language that allows Dev, QA, and Business collaboration.
+
+
+
+**Workflow**
+
+![BDD](/resources/BDD.png)
+
+First, Business (Product) defines the needing/feature desired.
+
+
+
+> **Title**
+> 
+> A clear and concise title.
+> 
+> **Definition**
+> 
+> As a: the person or role who will benefit from the feature
+> 
+> I want: the feature
+> 
+> So that: the benefit or value of the feature
+
+
+
+Once the US is documented, Business meets one person from the Development team and one person from the QA team. They discuss the US previously created. This is called The three amigos meeting.
+
+The key goal for this discussion is to trigger conversation and identify any missing specifications. The discussion also gives a platform for QA, the development team, and the Product Owner to converge and hear out each other's perspectives to enrich the requirement and also make sure they are building the right product.
+
+Then the examples are documented using a specification language like Gherkin, which can be used for development & automation.
+
+The acceptance criteria for a given scenario are structured as follows.
+
+
+
+> **Given**: the initial context at the beginning of the scenario, in one or more clauses.
+>
+> **When**: the event that triggers the scenario.
+>
+> **Then**: the expected outcome, in one or more clauses.
+
+
+
+After that, Automation and development phases start.
+
+-   During the sprint, the first step is to define an automation test (QA) that will fail because the US is not developed yet. (Failing Scenario)
+-   Then starts the Dev phase. The Dev team will work following the TDD methodology.
+-   Once the development has ended, the automation test will be working (Passing Scenario)
+-   At that point, QA will determine if it is necessary to refactor de test previously created.
+
+![BDD](/resources/BDDWorkflow.png)
 
 Trello app --> https://github.com/filiphric/cypress-tau-course
 cucumber para cypress --> npm install --save-dev cypress-cucumber-preprocessor
