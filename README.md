@@ -1,5 +1,9 @@
 # PandaGo QA Roleplay
 
+It is a complete test that allows utter creativity to the candidate.
+
+It is necessary to know about E2E and APIs testing, design patterns, CI, and Code coverage; giving complete freedom for the choice of tools and programming language, going through different integrations such as CI, SonarQube/SonarCloud, and ending with the way to document it.
+
 ## How to install it
 First of all, it will be necessary to clone this repository.
 
@@ -166,3 +170,23 @@ The reality is that both are valid and different, so the choice will depend more
 In a Cloud environment, SonarCloud, hosted in SonarSource in AWS, is the best option. In addition, it has fast integration with GitHub.com, GitLab.com, Bitbucket.org, and Azure DevOps. 
 
 If, on the other hand, our ecosystem is based on our servers or a self-managed cloud environment such as GCP (Google Cloud Platform), it will be better to opt for SonarQube. Like SonarCloud, it has integrations with GitHub, GitLab, Bitbucket, and Azure DevOps.
+
+## Improvements for this project
+
+Although my feeling about the project I am delivering is good, I have been wanting to implement improvements such as:
+
+- To implement Gherkin and start working with BDD.
+- To create more tests. Specifically, the test that checks that the "Remember me" button creates a cookie or adds information to an existing cookie.
+- To create the unit tests that verify the created functions.
+- To implement in SonarCloud the generated report of these unit tests to have a code coverage report.
+- To dockerize the project. Dockerizing a project reduces infrastructure resources and allows running the application on any computer without extra configurations.
+
+## Conclusion
+
+Although the proposed test seems to be easy and affordable, it is really complete.
+
+Once I started working on it, I realized the number of bangs needed, such as CI, Code coverage...
+
+Even though the test is not as complete as I would like it to be, I consider is a good technical test, so I am really happy with the work I am delivering to you, and I look forward to your comments on it.
+
+Thank you very much.
