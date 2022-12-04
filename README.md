@@ -162,6 +162,7 @@ and here you can see a screenshot of the result of the project execution.
 ![BDDWorkflow](/resources/sonarqube/sonarqube-overall-code.png)
 
 I decided to implement GitHub actions for code analysis in the project. I realized that the integration was with SonarCloud, so I cruised configure it, creating a token for SonarCloud, a new sonar-project.properties file, and a build.yml file where I specify that SonarCloud will launch every time there is a merge to the Main branch.
+The results can be found here https://sonarcloud.io/summary/new_code?id=bmontes1067_padago-qa-role-play&branch=main
 
 ### Is SonarQube or SonarCloud better?
 
