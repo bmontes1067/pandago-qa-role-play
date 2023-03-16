@@ -7,7 +7,7 @@ It is necessary to know about E2E and APIs testing, design patterns, CI, and Cod
 ## How to install it
 First of all, it will be necessary to clone this repository.
 
-    git clone https://github.com/bmontes1067/padago-qa-role-play.git
+    git clone https://github.com/bmontes1067/padango-qa-role-play.git
 
 Once downloaded, we will proceed to install all the dependencies by executing the command
 
